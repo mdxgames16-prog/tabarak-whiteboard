@@ -138,3 +138,5 @@ canvas.ink{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
 .libitem.board{border-bottom:1px solid var(--line)}
 @media (max-width:800px){.padbar{gap:4px;padding:4px}.ptool{padding:5px 7px;font-size:12px}.padbar input[type=range]{width:70px}#btnOverlay{bottom:14px}}
 @media (max-width:800px){.padbar{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch}.padbar>*{flex:0 0 auto}.psw{width:30px;height:30px}.ptool{white-space:nowrap}}
+
+.gdbtn{display:block;width:calc(100% - 28px);margin:6px 14px;background:#fff;border:1px solid var(--cyan);color:var(--navy);border-radius:8px;padding:8px;font-weight:600;text-align:left}
