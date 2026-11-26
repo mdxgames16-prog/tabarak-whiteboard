@@ -26,13 +26,14 @@
 
 <div id="layout">
   <aside id="side">
+    <button id="btnBoard" class="libitem board"><span>🧑‍🏫</span><div><b>Whiteboard · سبورة</b><small>Pen · marker · eraser · pages</small></div></button>
     <button id="btnQuran" class="libitem quran"><span>📖</span><div><b>القرآن الكريم</b><small>Quran · search · tafsir</small></div></button>
     <div class="sidehead">My library</div>
     <div id="libList"></div>
     <label class="addbtn">＋ Add books / materials
       <input type="file" id="addFiles" multiple accept=".pdf,.png,.jpg,.jpeg,.webp,.gif,.txt,.md,.html,.htm" hidden>
     </label>
-    <p class="small muted pad">PDF, images and text files. Everything is saved inside this browser on this computer, so it is still here next time.</p>
+    <p class="small muted pad">PDF, images and text files. Everything is saved inside this browser on this device, so it is still here next time.</p>
     <div id="dropHint" class="small muted pad">You can also drop files anywhere on this window.</div>
   </aside>
 
@@ -40,10 +41,11 @@
     <div id="welcome">
       <img src="img/logo.png" alt="" class="biglogo">
       <h1>سبورة تبارك أكاديمي</h1>
-      <p>Open the Quran from the left, or add a book or material. Everything you add is saved permanently on this computer.</p>
+      <p>Open the Quran from the left, or add a book or material. Everything you add is saved permanently on this device.</p>
     </div>
     <section id="quranView" hidden></section>
     <section id="docView" hidden></section>
+    <section id="boardView" hidden></section>
   </main>
 
   <aside id="panel">
@@ -57,6 +59,7 @@
   </aside>
 </div>
 
+<button id="btnOverlay" hidden title="Draw or write over this page with a pen">✏️ Draw on page</button>
 <div id="selbar" hidden>
   <button data-act="translate">Translate</button>
   <span id="hlColors">
@@ -72,5 +75,6 @@
 <script src="lib/pdf.worker.min.js"></script>
 <script src="data/quran-data.js"></script>
 <script src="app.js"></script>
+<script src="board.js"></script>
 </body>
 </html>
