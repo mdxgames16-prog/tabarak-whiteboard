@@ -113,3 +113,28 @@ canvas.ink{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
  #quranView{padding:8px}.ayah .ar{font-size:26px!important}
  #dbar{gap:4px}#top .logo{height:32px}
 }
+
+/* whiteboard + draw over page */
+#boardView{position:absolute;inset:0;display:flex;flex-direction:column}
+#main{position:relative}
+.padbar{display:flex;flex-wrap:wrap;gap:6px;align-items:center;background:#fff;border-bottom:1px solid var(--line);padding:6px 8px;flex:0 0 auto}
+.padbar .sep{width:1px;height:22px;background:var(--line);margin:0 2px}
+.ptool{background:#fff;border:1px solid var(--line);border-radius:7px;padding:6px 10px;font-size:13px;min-height:34px;color:var(--ink)}
+.ptool.on{background:var(--navy);color:#fff;border-color:var(--navy)}
+.ptool.danger{background:#b3261e;color:#fff;border-color:#b3261e}
+.psw{width:28px;height:28px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px #aaa;padding:0}
+.psw.on{box-shadow:0 0 0 3px var(--cyan)}
+.padbar input[type=range]{width:90px}
+.sizedot{display:inline-block;background:#222;border-radius:50%;flex:0 0 auto}
+.padstage{position:relative;flex:1 1 auto;min-height:0;overflow:hidden;background:#fff}
+.padstage.bg-white{background:#fff}.padstage.bg-green{background:#1f4d3a}.padstage.bg-black{background:#15181c}.padstage.bg-cream{background:#f7f1dc}
+.padcv{position:absolute;left:0;top:0;touch-action:none;cursor:crosshair}
+#ovRoot{position:fixed;z-index:40;display:flex;flex-direction:column;pointer-events:none}
+#ovRoot .padbar{pointer-events:auto;box-shadow:0 3px 10px #0003}
+#ovRoot .padstage.ov{background:transparent;pointer-events:none}
+#ovRoot .padstage.ov .padcv{pointer-events:auto}
+#btnOverlay{position:fixed;right:14px;bottom:18px;z-index:35;background:var(--cyan);color:#fff;border:0;border-radius:24px;padding:11px 18px;font-weight:600;box-shadow:0 4px 14px #0005}
+#btnOverlay.on{background:#b3261e}
+.libitem.board{border-bottom:1px solid var(--line)}
+@media (max-width:800px){.padbar{gap:4px;padding:4px}.ptool{padding:5px 7px;font-size:12px}.padbar input[type=range]{width:70px}#btnOverlay{bottom:14px}}
+@media (max-width:800px){.padbar{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch}.padbar>*{flex:0 0 auto}.psw{width:30px;height:30px}.ptool{white-space:nowrap}}
