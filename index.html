@@ -33,6 +33,12 @@
     <label class="addbtn">＋ Add books / materials
       <input type="file" id="addFiles" multiple accept=".pdf,.png,.jpg,.jpeg,.webp,.gif,.txt,.md,.html,.htm" hidden>
     </label>
+    <div class="sidehead">Google Drive</div>
+    <button id="gdOpen" class="gdbtn">☁ Open from Drive…</button>
+    <button id="gdBoard" class="gdbtn">☁ Save whiteboard to Drive</button>
+    <button id="gdNotes" class="gdbtn">☁ Save notes to Drive</button>
+    <button id="gdRestore" class="gdbtn">☁ Load notes / board from Drive</button>
+    <p class="small muted pad">Drive only shows the files you choose. Files you open from Drive are copied onto this device, so they work offline.</p>
     <p class="small muted pad">PDF, images and text files. Everything is saved inside this browser on this device, so it is still here next time.</p>
     <div id="dropHint" class="small muted pad">You can also drop files anywhere on this window.</div>
   </aside>
@@ -76,5 +82,6 @@
 <script src="data/quran-data.js"></script>
 <script src="app.js"></script>
 <script src="board.js"></script>
+<script src="drive.js"></script>
 </body>
 </html>
