@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>سبورة تبارك أكاديمي | Tabarak Academy Whiteboard</title>
+<link rel="stylesheet" href="style.css">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="img/icon-192.png">
+<link rel="apple-touch-icon" href="img/icon-192.png">
+<meta name="theme-color" content="#12304a">
+<meta name="apple-mobile-web-app-capable" content="yes">
+</head>
+<body>
+<header id="top">
+  <button id="btnSide" class="icon" title="Library">☰</button>
+  <img src="img/logo.png" alt="Tabarak Academy" class="logo">
+  <div class="title"><b>سبورة تبارك أكاديمي</b><span>Tabarak Academy Whiteboard</span></div>
+  <div class="spacer"></div>
+  <span id="storeInfo" class="muted small"></span>
+  <button id="btnBackup" class="ghost" title="Save your highlights and notes to a file">Backup notes</button>
+  <button id="btnRestore" class="ghost">Restore</button>
+  <input type="file" id="restoreFile" accept=".json" hidden>
+  <button id="btnPanel" class="icon" title="Side panel">▤</button>
+</header>
+
+<div id="layout">
+  <aside id="side">
+    <button id="btnQuran" class="libitem quran"><span>📖</span><div><b>القرآن الكريم</b><small>Quran · search · tafsir</small></div></button>
+    <div class="sidehead">My library</div>
+    <div id="libList"></div>
+    <label class="addbtn">＋ Add books / materials
+      <input type="file" id="addFiles" multiple accept=".pdf,.png,.jpg,.jpeg,.webp,.gif,.txt,.md,.html,.htm" hidden>
+    </label>
+    <p class="small muted pad">PDF, images and text files. Everything is saved inside this browser on this computer, so it is still here next time.</p>
+    <div id="dropHint" class="small muted pad">You can also drop files anywhere on this window.</div>
+  </aside>
+
+  <main id="main">
+    <div id="welcome">
+      <img src="img/logo.png" alt="" class="biglogo">
+      <h1>سبورة تبارك أكاديمي</h1>
+      <p>Open the Quran from the left, or add a book or material. Everything you add is saved permanently on this computer.</p>
+    </div>
+    <section id="quranView" hidden></section>
+    <section id="docView" hidden></section>
+  </main>
+
+  <aside id="panel">
+    <nav id="tabs">
+      <button data-tab="translate" class="on">Translate</button>
+      <button data-tab="tafsir">Tafsir</button>
+      <button data-tab="marks">Marks</button>
+      <button data-tab="pageayat" id="tabPageAyat" hidden>Page ayat</button>
+    </nav>
+    <div id="tabBody"></div>
+  </aside>
+</div>
+
+<div id="selbar" hidden>
+  <button data-act="translate">Translate</button>
+  <span id="hlColors">
+    <button data-hl="#ffe45e" style="background:#ffe45e" title="Yellow"></button>
+    <button data-hl="#8de08d" style="background:#8de08d" title="Green"></button>
+    <button data-hl="#ffa6c9" style="background:#ffa6c9" title="Pink"></button>
+    <button data-hl="#8fd3ff" style="background:#8fd3ff" title="Blue"></button>
+  </span>
+</div>
+<div id="toast" hidden></div>
+
+<script src="lib/pdf.min.js"></script>
+<script src="lib/pdf.worker.min.js"></script>
+<script src="data/quran-data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
