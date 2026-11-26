@@ -201,7 +201,7 @@ async function renderTafsirTab(body) {
     const r = await getTafsir(t.slug, s, a);
     if (S.tab !== 'tafsir' || S.tafsirSlug !== t.slug || !S.ayah || S.ayah.s !== s || S.ayah.a !== a) return;
     box.textContent = r.text || 'No text for this ayah in this tafsir.'; box.dataset.text = r.text || '';
-  } catch (e) { box.textContent = (navigator.onLine ? '' : 'You are offline. ') + 'Could not load: ' + e.message + ' Tafsir loads from the internet the first time, then it is kept on this computer.'; }
+  } catch (e) { box.textContent = (navigator.onLine ? '' : 'You are offline. ') + 'Could not load: ' + e.message + ' Tafsir loads from the internet the first time, then it is kept on this device.'; }
 }
 function renderMarksTab(body) {
   body.append(el('h4', { text: 'My highlights' }));
@@ -348,8 +348,8 @@ function renderQuran() {
 /* ---------- views / library ---------- */
 function setView(v) {
   S.view = v; if (innerWidth < 800 && v !== 'welcome') $('#side').classList.add('hide');
-  $('#welcome').hidden = v !== 'welcome'; $('#quranView').hidden = v !== 'quran'; $('#docView').hidden = v !== 'doc';
-  $('#main').style.overflow = v === 'doc' ? 'hidden' : 'auto';
+  $('#welcome').hidden = v !== 'welcome'; $('#quranView').hidden = v !== 'quran'; $('#docView').hidden = v !== 'doc'; $('#boardView').hidden = v !== 'board';
+  $('#main').style.overflow = (v === 'doc' || v === 'board') ? 'hidden' : 'auto';
   $('#tabPageAyat').hidden = !(v === 'doc' && S.doc && S.doc.mushaf.on);
   $('#btnQuran').classList.toggle('on', v === 'quran');
   if (v !== 'doc') { S.docId = null; }
@@ -357,6 +357,7 @@ function setView(v) {
   if (S.tab === 'pageayat' && $('#tabPageAyat').hidden) S.tab = 'translate';
   switchTab(S.tab);
   DB.set('last', v === 'doc' ? { v, id: S.docId } : { v });
+  $('#btnBoard').classList.toggle('on', v === 'board');
 }
 async function renderLib() {
   S.files = await DB.listFiles(); const box = $('#libList'); box.textContent = '';
@@ -586,10 +587,11 @@ $('#restoreFile').onchange = async (e) => {
   S.tafsirSlug = (await DB.get('settings:tafsir')) || S.tafsirSlug;
   const at = await DB.get('settings:autoTranslate'); if (at !== undefined) S.tr.auto = at;
   const last = await DB.get('last'); await renderLib();
-  if (last && last.v === 'quran') openQuran();
+  if (last && last.v === 'board') openBoard();
+  else if (last && last.v === 'quran') openQuran();
   else if (last && last.v === 'doc' && S.files.find(f => f.id === last.id)) openDoc(last.id);
   else setView('welcome');
-  if (innerWidth < 800) { $('#panel').classList.add('hide'); if (S.view !== 'welcome') $('#side').classList.add('hide'); }
+  if (innerWidth < 800) { $('#panel').classList.add('hide'); $('#side').classList.add('hide'); }
   if ('serviceWorker' in navigator && location.protocol.startsWith('http')) navigator.serviceWorker.register('sw.js').catch(() => { });
   window.__ready = true;
 })();
