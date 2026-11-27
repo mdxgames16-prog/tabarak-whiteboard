@@ -586,12 +586,13 @@ $('#restoreFile').onchange = async (e) => {
   S.qhl = (await DB.get('qhl')) || []; S.qbm = (await DB.get('qbm')) || [];
   S.tafsirSlug = (await DB.get('settings:tafsir')) || S.tafsirSlug;
   const at = await DB.get('settings:autoTranslate'); if (at !== undefined) S.tr.auto = at;
-  const last = await DB.get('last'); await renderLib();
-  if (last && last.v === 'board') openBoard();
-  else if (last && last.v === 'quran') openQuran();
-  else if (last && last.v === 'doc' && S.files.find(f => f.id === last.id)) openDoc(last.id);
-  else setView('welcome');
+  await renderLib();
+  openBoard();
   if (innerWidth < 800) { $('#panel').classList.add('hide'); $('#side').classList.add('hide'); }
-  if ('serviceWorker' in navigator && location.protocol.startsWith('http')) navigator.serviceWorker.register('sw.js').catch(() => { });
+  if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
+    const hadSW = !!navigator.serviceWorker.controller;
+    navigator.serviceWorker.addEventListener('controllerchange', () => { if (hadSW) location.reload(); });
+    navigator.serviceWorker.register('sw.js').catch(() => { });
+  }
   window.__ready = true;
 })();
